@@ -1,5 +1,6 @@
 using mid_assignment_backend.Entities;
 using Microsoft.EntityFrameworkCore;
+
 namespace mid_assignment_backend.Repositories
 {
     public class ApplicationDbContext : DbContext
@@ -13,8 +14,12 @@ namespace mid_assignment_backend.Repositories
         // }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Book> Posts { get; set; }
-        public DbSet<Category> Comments { get; set; }
+        public DbSet<Book> Books { get; set; }
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<BookBorrowingRequest> BookBorrowingRequests { get; set; }
+
+        public DbSet<BookBorrowingRequestDetails> BookBorrowingRequestDetails { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
