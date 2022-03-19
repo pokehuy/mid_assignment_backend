@@ -1,5 +1,6 @@
 using mid_assignment_backend.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace mid_assignment_backend.Repositories
 {
@@ -71,6 +72,121 @@ namespace mid_assignment_backend.Repositories
             .WithMany(b => b.Details)
             .HasForeignKey(b => b.BookId)
             .IsRequired();
+
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    Id = 1,
+                    Username = "admin",
+                    Password = "admin",
+                    Role = "admin"
+                },
+                new User
+                {
+                    Id = 2,
+                    Username = "user1",
+                    Password = "1",
+                    Role = "user"
+                },
+                new User
+                {
+                    Id = 3,
+                    Username = "user2",
+                    Password = "2",
+                    Role = "user"
+                }
+            );
+
+            modelBuilder.Entity<Book>().HasData(
+                new Book
+                {
+                    Id = 1,
+                    Title = "Book1",
+                    Author = "Author1",
+                    CategoryId = 1,
+                },
+                new Book
+                {
+                    Id = 2,
+                    Title = "Book2",
+                    Author = "Author2",
+                    CategoryId = 2,
+                },
+                new Book
+                {
+                    Id = 3,
+                    Title = "Book3",
+                    Author = "Author3",
+                    CategoryId = 3,
+                },
+                new Book
+                {
+                    Id = 4,
+                    Title = "Book4",
+                    Author = "Author3",
+                    CategoryId = 3,
+                },
+                new Book
+                {
+                    Id = 5,
+                    Title = "Book5",
+                    Author = "Author1",
+                    CategoryId = 3,
+                },
+                new Book
+                {
+                    Id = 6,
+                    Title = "Book6",
+                    Author = "Author6",
+                    CategoryId = 3,
+                }
+            );
+
+            modelBuilder.Entity<Category>().HasData(
+                new Category
+                {
+                    Id = 1,
+                    Name = "Category1"
+                },
+                new Category
+                {
+                    Id = 2,
+                    Name = "Category2"
+                },
+                new Category
+                {
+                    Id = 3,
+                    Name = "Category3"
+                }
+            );
+
+            modelBuilder.Entity<BookBorrowingRequest>().HasData(
+                new BookBorrowingRequest{
+                    Id = 1,
+                    RequestByUserId = 3,
+                    Date = DateTime.Now,
+                    Status = RequestStatus.Waiting,
+                    ProcessedByUserId = 1,
+                }
+            );
+
+            modelBuilder.Entity<BookBorrowingRequestDetails>().HasData(
+                new BookBorrowingRequestDetails
+                {
+                    BookBorrowingRequestId = 1,
+                    BookId = 1,
+                },
+                new BookBorrowingRequestDetails
+                {
+                    BookBorrowingRequestId = 1,
+                    BookId = 2,
+                },
+                new BookBorrowingRequestDetails
+                {
+                    BookBorrowingRequestId = 1,
+                    BookId = 3,
+                }
+            );
         }
     }
 }

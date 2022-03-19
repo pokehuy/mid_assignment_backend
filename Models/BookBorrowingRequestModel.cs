@@ -6,7 +6,7 @@ namespace mid_assignment_backend.Models
 {
     public class BookBorrowingRequestModel
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public int RequestByUserId { get; set; }
         public DateTime Date { get; set; }
         public RequestStatus Status { get; set; }

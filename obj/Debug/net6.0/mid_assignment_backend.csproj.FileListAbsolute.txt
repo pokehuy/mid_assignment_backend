@@ -59,3 +59,6 @@
 /Users/huy/Desktop/coding/mid/mid_assignment_backend/obj/Debug/net6.0/ref/mid_assignment_backend.dll
 /Users/huy/Desktop/coding/mid/mid_assignment_backend/obj/Debug/net6.0/mid_assignment_backend.pdb
 /Users/huy/Desktop/coding/mid/mid_assignment_backend/obj/Debug/net6.0/mid_assignment_backend.genruntimeconfig.cache
+/Users/huy/Desktop/coding/mid/mid_assignment_backend/bin/Debug/net6.0/package-lock.json
+/Users/huy/Desktop/coding/mid/mid_assignment_backend/bin/Debug/net6.0/package.json
+/Users/huy/Desktop/coding/mid/mid_assignment_backend/bin/Debug/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll

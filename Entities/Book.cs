@@ -8,7 +8,6 @@ namespace mid_assignment_backend.Entities
         public string? Author { get; set; }
         [Required]
         public int CategoryId { get; set; }
-
         public virtual Category? Category { get; set; }
         public ICollection<BookBorrowingRequestDetails>? Details { get; set; }
 

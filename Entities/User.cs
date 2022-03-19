@@ -9,7 +9,7 @@ namespace mid_assignment_backend.Entities
         [Required, MaxLength(50)]
         public string Password { get; set; }
         [Required]
-        public Roll Roll { get; set; }
+        public string Role { get; set; }
 
         public ICollection<BookBorrowingRequest>? BookBorrowingRequests { get; set; }
 
