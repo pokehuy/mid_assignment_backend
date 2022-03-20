@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace mid_assignment_backend.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class initialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -124,9 +124,9 @@ namespace mid_assignment_backend.Migrations
                 columns: new[] { "Id", "Password", "Role", "Username" },
                 values: new object[,]
                 {
-                    { 1, "admin", "admin", "admin" },
-                    { 2, "1", "user", "user1" },
-                    { 3, "2", "user", "user2" }
+                    { 1, "admin", "Admin", "admin" },
+                    { 2, "1", "User", "user1" },
+                    { 3, "2", "User", "user2" }
                 });
 
             migrationBuilder.InsertData(
@@ -145,7 +145,7 @@ namespace mid_assignment_backend.Migrations
             migrationBuilder.InsertData(
                 table: "BookBorrowingRequest",
                 columns: new[] { "Id", "Date", "ProcessedByUserId", "RequestByUserId", "Status" },
-                values: new object[] { 1, new DateTime(2022, 3, 19, 23, 15, 7, 496, DateTimeKind.Local).AddTicks(9600), 1, 3, 0 });
+                values: new object[] { 1, new DateTime(2022, 3, 20, 19, 48, 59, 502, DateTimeKind.Local).AddTicks(9760), 1, 3, 0 });
 
             migrationBuilder.InsertData(
                 table: "BookBorrowingRequestDetails",

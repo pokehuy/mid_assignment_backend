@@ -12,9 +12,9 @@ namespace mid_assignment_backend.Services
             _bookBorrowingRequestDetailsRepository = bookBorrowingRequestDetailsRepository;
         }
 
-        public async Task<BookBorrowingRequestDetails> GetBookBorrowingRequestDetails(int id)
+        public async Task<BookBorrowingRequestDetails> GetBookBorrowingRequestDetailsById(int id)
         {
-            return await _bookBorrowingRequestDetailsRepository.GetBookBorrowingRequestDetails(id);
+            return await _bookBorrowingRequestDetailsRepository.GetBookBorrowingRequestDetailsById(id);
         }
 
         public async Task<List<BookBorrowingRequestDetails>> GetAllBookBorrowingRequestDetails()
@@ -32,6 +32,11 @@ namespace mid_assignment_backend.Services
         {
             if(bookBorrowingRequestDetails == null) return null;
             return await _bookBorrowingRequestDetailsRepository.UpdateBookBorrowingRequestDetails(bookBorrowingRequestDetails);
+        }
+
+        public async Task<BookBorrowingRequestDetails> DeleteBookBorrowingRequestDetails(int id)
+        {
+            return await _bookBorrowingRequestDetailsRepository.DeleteBookBorrowingRequestDetails(id);
         }
     }
 }

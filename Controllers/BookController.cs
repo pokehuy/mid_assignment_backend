@@ -19,7 +19,7 @@ public class BookController : ControllerBase
         _bookService = bookService;
     }
     
-    [HttpGet]
+    [HttpGet, Authorize(Roles = "Admin,User")]
     public async Task<IActionResult> GetAllBooks()
     {
         var data = await _bookService.GetAllBooks();
@@ -34,7 +34,7 @@ public class BookController : ControllerBase
         return new JsonResult(resultProduct);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id}"), Authorize(Roles = "Admin,User")]
     public async Task<IActionResult> GetBookById(int id)
     {
         var data = await _bookService.GetBookById(id);
@@ -48,35 +48,35 @@ public class BookController : ControllerBase
         return new JsonResult(resultProduct);
     }
 
-    [HttpPost]
+    [HttpPost, Authorize(Roles = "Admin")]
     public async Task<IActionResult> CreateBook([FromBody] BookModel book)
     {
-        var resultProduct = new Book
+        var data = new Book
         {
             //Id = data.Id,
             Title = book.Title,
             Author = book.Author,
             CategoryId = book.CategoryId,
         };
-        var data = await _bookService.CreateBook(resultProduct);
-        return new JsonResult(data);
+        var resultProduct = await _bookService.CreateBook(data);
+        return new JsonResult(resultProduct);
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("{id}"), Authorize(Roles = "Admin")]
     public async Task<IActionResult> UpdateBook(int id, [FromBody] BookModel book)
     {
-        var resultProduct = new Book
+        var data = new Book
         {
             Id = id,
             Title = book.Title,
             Author = book.Author,
             CategoryId = book.CategoryId,
         };
-        var data = await _bookService.UpdateBook(resultProduct);
-        return new JsonResult(data);
+        var resultProduct = await _bookService.UpdateBook(data);
+        return new JsonResult(resultProduct);
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("{id}"), Authorize(Roles = "Admin")]
     public async Task<IActionResult> DeleteBook(int id)
     {
         var data = await _bookService.DeleteBook(id);

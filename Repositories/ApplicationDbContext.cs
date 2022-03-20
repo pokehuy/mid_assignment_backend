@@ -20,7 +20,7 @@ namespace mid_assignment_backend.Repositories
 
         public DbSet<BookBorrowingRequest> BookBorrowingRequests { get; set; }
 
-        public DbSet<BookBorrowingRequestDetails> BookBorrowingRequestDetails { get; set; }
+        public DbSet<BookBorrowingRequestDetails> BookBorrowingRequestDetailsList { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -79,21 +79,21 @@ namespace mid_assignment_backend.Repositories
                     Id = 1,
                     Username = "admin",
                     Password = "admin",
-                    Role = "admin"
+                    Role = "Admin"
                 },
                 new User
                 {
                     Id = 2,
                     Username = "user1",
                     Password = "1",
-                    Role = "user"
+                    Role = "User"
                 },
                 new User
                 {
                     Id = 3,
                     Username = "user2",
                     Password = "2",
-                    Role = "user"
+                    Role = "User"
                 }
             );
 

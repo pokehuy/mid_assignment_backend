@@ -22,9 +22,21 @@ namespace mid_assignment_backend.Services
             return await _userRepository.GetAllUsers();
         }
 
-        public async Task<bool> CheckUser(string username, string password)
+        public async Task<User> CreateUser(User user)
         {
-            return await _userRepository.CheckUser(username, password);
+            if (user == null) return null;
+            return await _userRepository.CreateUser(user);
+        }
+
+        public async Task<User> UpdateUser(User user)
+        {
+            if (user == null) return null;
+            return await _userRepository.UpdateUser(user);
+        }
+
+        public async Task<User> DeleteUser(int id)
+        {
+            return await _userRepository.DeleteUser(id);
         }
     }
 }

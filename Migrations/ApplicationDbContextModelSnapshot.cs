@@ -123,7 +123,7 @@ namespace mid_assignment_backend.Migrations
                         new
                         {
                             Id = 1,
-                            Date = new DateTime(2022, 3, 19, 23, 15, 7, 496, DateTimeKind.Local).AddTicks(9600),
+                            Date = new DateTime(2022, 3, 20, 19, 48, 59, 502, DateTimeKind.Local).AddTicks(9760),
                             ProcessedByUserId = 1,
                             RequestByUserId = 3,
                             Status = 0
@@ -226,21 +226,21 @@ namespace mid_assignment_backend.Migrations
                         {
                             Id = 1,
                             Password = "admin",
-                            Role = "admin",
+                            Role = "Admin",
                             Username = "admin"
                         },
                         new
                         {
                             Id = 2,
                             Password = "1",
-                            Role = "user",
+                            Role = "User",
                             Username = "user1"
                         },
                         new
                         {
                             Id = 3,
                             Password = "2",
-                            Role = "user",
+                            Role = "User",
                             Username = "user2"
                         });
                 });

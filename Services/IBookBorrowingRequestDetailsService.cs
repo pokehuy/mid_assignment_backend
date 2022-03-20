@@ -4,9 +4,10 @@ namespace mid_assignment_backend.Services
 {
     public interface IBookBorrowingRequestDetailsService
     {
-        Task<BookBorrowingRequestDetails> GetBookBorrowingRequestDetails(int id);
+        Task<BookBorrowingRequestDetails> GetBookBorrowingRequestDetailsById(int id);
         Task<List<BookBorrowingRequestDetails>> GetAllBookBorrowingRequestDetails();
         Task<BookBorrowingRequestDetails> CreateBookBorrowingRequestDetails(BookBorrowingRequestDetails bookBorrowingRequestDetails);
         Task<BookBorrowingRequestDetails> UpdateBookBorrowingRequestDetails(BookBorrowingRequestDetails bookBorrowingRequestDetails);
+        Task<BookBorrowingRequestDetails> DeleteBookBorrowingRequestDetails(int id);
     }
 }

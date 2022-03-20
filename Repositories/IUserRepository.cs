@@ -6,7 +6,8 @@ namespace mid_assignment_backend.Repositories
     {
         Task<User> GetUserById(int id);
         Task<List<User>> GetAllUsers();
-
-        Task<bool> CheckUser(string username, string password);
+        Task<User> CreateUser(User user);
+        Task<User> UpdateUser(User user);
+        Task<User> DeleteUser(int id);
     }
 }

@@ -4,8 +4,9 @@ namespace mid_assignment_backend.Repositories
 {
     public interface IBookBorrowingRequestRepository
     {
-        Task<BookBorrowingRequest> GetBookBorrowingRequest(int id);
+        Task<BookBorrowingRequest> GetBookBorrowingRequestById(int id);
         Task<List<BookBorrowingRequest>> GetAllBookBorrowingRequests();
+        Task<BookBorrowingRequest> UpdateBookBorrowingRequest(BookBorrowingRequest bookBorrowingRequest);
         Task<BookBorrowingRequest> CreateBookBorrowingRequest(BookBorrowingRequest bookBorrowingRequest);
         Task<BookBorrowingRequest> DeleteBookBorrowingRequest(int id);
     }

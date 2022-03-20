@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace mid_assignment_backend.Controllers;
+
 
 [ApiController]
 [Route("[controller]")]
@@ -18,8 +20,8 @@ public class WeatherForecastController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<WeatherForecast> Get()
+    [HttpGet(Name = "GetWeatherForecastForAdmin"), Authorize(Roles = "Admin")]
+    public IEnumerable<WeatherForecast> AllowAdmin()
     {
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
         {
@@ -29,4 +31,5 @@ public class WeatherForecastController : ControllerBase
         })
         .ToArray();
     }
+    
 }

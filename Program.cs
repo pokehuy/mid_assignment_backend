@@ -27,12 +27,14 @@ builder.Services.AddCors(options =>
         });
 });
 
+builder.Services.AddTransient<IAuthenticationRepository, AuthenticationRepository>();
 builder.Services.AddTransient<IBookRepository, BookRepository>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
 builder.Services.AddTransient<IBookBorrowingRequestRepository, BookBorrowingRequestRepository>();
 builder.Services.AddTransient<IBookBorrowingRequestDetailsRepository, BookBorrowingRequestDetailsRepository>();
 
+builder.Services.AddTransient<IAuthenticationService, AuthenticationService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IBookService, BookService>();
 builder.Services.AddTransient<ICategoryService, CategoryService>();
@@ -52,15 +54,17 @@ builder.Services.AddAuthentication(opt => {
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
         ValidIssuer = "",
-        ValidAudience = "http://localhost:7052",
+        ValidAudience = "http://localhost:5000",
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Constants.SIGNATURE_KEY))
     };
 });
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
 //builder.Services.AddSwaggerGen();
+
 builder.Services.AddSwaggerGen(option =>
 {
     option.SwaggerDoc("v1", new OpenApiInfo { Title = "Demo API", Version = "v1" });
@@ -100,6 +104,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

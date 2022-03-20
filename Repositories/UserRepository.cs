@@ -22,14 +22,24 @@ namespace mid_assignment_backend.Repositories
            return await _context.Users.ToListAsync();
         }
 
-        public async Task<bool> CheckUser(string username, string password)
-        {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
-            if (user == null)
-            {
-                return false;
-            }
-            return true;
+        public async Task<User> CreateUser(User user){
+            if(user == null) throw new ArgumentNullException(nameof(user));
+            await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
+            return user;
+        }
+        public async Task<User> UpdateUser(User user){
+            if(user == null) throw new ArgumentNullException(nameof(user));
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+            return user;
+        }
+        public async Task<User> DeleteUser(int id){
+            var user = await _context.Users.FindAsync(id);
+            if(user == null) throw new ArgumentNullException(nameof(user));
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+            return user;
         }
     }
 }
