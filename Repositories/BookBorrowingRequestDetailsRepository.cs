@@ -11,9 +11,9 @@ namespace mid_assignment_backend.Repositories
             _context = context;
         }
 
-        public async Task<BookBorrowingRequestDetails> GetBookBorrowingRequestDetailsById(int id)
+        public async Task<BookBorrowingRequestDetails> GetBookBorrowingRequestDetailsById(int requestId,int bookId)
         {
-            return await _context.BookBorrowingRequestDetailsList.FindAsync(id);
+            return await _context.BookBorrowingRequestDetailsList.FindAsync(requestId, bookId);
         }
 
         public async Task<List<BookBorrowingRequestDetails>> GetAllBookBorrowingRequestDetails()

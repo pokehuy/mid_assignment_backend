@@ -15,7 +15,11 @@ namespace mid_assignment_backend.Services
         public async Task<ResponseUser> Login(AuthenticationRequest model)
         {
             return await _authenticationRepository.Login(model);
-            
         }
+
+        // public async Task<ResponseUser> Logout()
+        // {
+        //     return await _authenticationRepository.Logout();
+        // }
     }
 }

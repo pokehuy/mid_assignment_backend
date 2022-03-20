@@ -12,7 +12,7 @@ using mid_assignment_backend.Repositories;
 namespace mid_assignment_backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220320124859_initialCreate")]
+    [Migration("20220320163549_initialCreate")]
     partial class initialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -125,7 +125,7 @@ namespace mid_assignment_backend.Migrations
                         new
                         {
                             Id = 1,
-                            Date = new DateTime(2022, 3, 20, 19, 48, 59, 502, DateTimeKind.Local).AddTicks(9760),
+                            Date = new DateTime(2022, 3, 20, 23, 35, 49, 501, DateTimeKind.Local).AddTicks(2290),
                             ProcessedByUserId = 1,
                             RequestByUserId = 3,
                             Status = 0

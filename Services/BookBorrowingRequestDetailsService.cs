@@ -12,9 +12,9 @@ namespace mid_assignment_backend.Services
             _bookBorrowingRequestDetailsRepository = bookBorrowingRequestDetailsRepository;
         }
 
-        public async Task<BookBorrowingRequestDetails> GetBookBorrowingRequestDetailsById(int id)
+        public async Task<BookBorrowingRequestDetails> GetBookBorrowingRequestDetailsById(int requestId,int bookId)
         {
-            return await _bookBorrowingRequestDetailsRepository.GetBookBorrowingRequestDetailsById(id);
+            return await _bookBorrowingRequestDetailsRepository.GetBookBorrowingRequestDetailsById(requestId, bookId);
         }
 
         public async Task<List<BookBorrowingRequestDetails>> GetAllBookBorrowingRequestDetails()

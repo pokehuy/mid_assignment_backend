@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace mid_assignment_backend.Models
 {
@@ -9,8 +6,9 @@ namespace mid_assignment_backend.Models
     {
         //public int? Id { get; set; }
         public string Username { get; set; }
-        //public string Role { get; set; }
-        public string Token { get; set; }
+        public string Role { get; set; }
+        //[JsonIgnore]
+        public string? Token { get; set; }
         public string Message { get; set; }
     }
 }

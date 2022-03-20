@@ -35,18 +35,28 @@ namespace mid_assignment_backend.Repositories
             if (bookBorrowingRequest == null) throw new ArgumentNullException(nameof(bookBorrowingRequest));
             var listRequestByUser = await _context.BookBorrowingRequests.Where(x => x.RequestByUserId == bookBorrowingRequest.RequestByUserId).ToListAsync();
             var sortedListRequest = listRequestByUser.OrderByDescending(x => x.Date).ToList();
-            var interval = (DateTime.Now - sortedListRequest[1].Date).Days;
-
-            if (sortedListRequest.Count() < 3 || interval > 30)
+            if (sortedListRequest.Count >= 3)
+            {
+                var interval = (DateTime.Now - sortedListRequest[1].Date).Days;
+                if (interval > 30)
+                {
+                    await _context.BookBorrowingRequests.AddAsync(bookBorrowingRequest);
+                    await _context.SaveChangesAsync();
+                    return bookBorrowingRequest;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            if(sortedListRequest.Count < 3)
             {
                 await _context.BookBorrowingRequests.AddAsync(bookBorrowingRequest);
                 await _context.SaveChangesAsync();
                 return bookBorrowingRequest;
             }
-            else
-            {
-                return null;
-            }
+            return null;
+
         }
 
         public async Task<BookBorrowingRequest> UpdateBookBorrowingRequest(BookBorrowingRequest bookBorrowingRequest)

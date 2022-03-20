@@ -145,7 +145,7 @@ namespace mid_assignment_backend.Migrations
             migrationBuilder.InsertData(
                 table: "BookBorrowingRequest",
                 columns: new[] { "Id", "Date", "ProcessedByUserId", "RequestByUserId", "Status" },
-                values: new object[] { 1, new DateTime(2022, 3, 20, 19, 48, 59, 502, DateTimeKind.Local).AddTicks(9760), 1, 3, 0 });
+                values: new object[] { 1, new DateTime(2022, 3, 20, 23, 35, 49, 501, DateTimeKind.Local).AddTicks(2290), 1, 3, 0 });
 
             migrationBuilder.InsertData(
                 table: "BookBorrowingRequestDetails",

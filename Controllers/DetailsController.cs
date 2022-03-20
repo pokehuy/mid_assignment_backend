@@ -13,10 +13,10 @@ public class DetailsController : ControllerBase
     private readonly ILogger<DetailsController> _logger;
     private readonly IBookBorrowingRequestDetailsService _bookBorrowingRequestDetailsService;
 
-    public DetailsController(ILogger<DetailsController> logger, IBookBorrowingRequestDetailsService _bookBorrowingRequestDetailsService)
+    public DetailsController(ILogger<DetailsController> logger, IBookBorrowingRequestDetailsService bookBorrowingRequestDetailsService)
     {
         _logger = logger;
-        _bookBorrowingRequestDetailsService = _bookBorrowingRequestDetailsService;
+        _bookBorrowingRequestDetailsService = bookBorrowingRequestDetailsService;
     }
 
     [HttpGet, Authorize(Roles = "Admin")]
@@ -32,10 +32,10 @@ public class DetailsController : ControllerBase
         return new JsonResult(resultProduct);
     }
 
-    [HttpGet("{id}"), Authorize(Roles = "Admin,User")]
-    public async Task<IActionResult> GetBookBorrowingRequestDetailsById(int id)
+    [HttpGet("{requestId}&{bookId}"), Authorize(Roles = "Admin,User")]
+    public async Task<IActionResult> GetBookBorrowingRequestDetailsById(int requestId,int bookId)
     {
-        var data = await _bookBorrowingRequestDetailsService.GetBookBorrowingRequestDetailsById(id);
+        var data = await _bookBorrowingRequestDetailsService.GetBookBorrowingRequestDetailsById(requestId, bookId);
         var resultProduct = new BookBorrowingRequestDetailsModel
         {
             BookBorrowingRequestId = data.BookBorrowingRequestId,
