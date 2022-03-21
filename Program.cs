@@ -16,6 +16,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 
 // add CORS service
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",
@@ -24,8 +25,11 @@ builder.Services.AddCors(options =>
             builder.AllowAnyOrigin()
                    .AllowAnyMethod()
                    .AllowAnyHeader();
+                   //.AllowCredentials();
         });
 });
+
+//builder.Services.AddCors();
 
 builder.Services.AddTransient<IAuthenticationRepository, AuthenticationRepository>();
 builder.Services.AddTransient<IBookRepository, BookRepository>();
@@ -110,6 +114,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseCors("AllowAll"); // use CORS
+//app.UseCors(options => options.AllowCredentials().AllowAnyMethod().AllowAnyHeader());
 
 app.MapControllers();
 

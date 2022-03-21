@@ -23,16 +23,19 @@ public class AuthenticationController : ControllerBase
     {
         var response = await _authenticationService.Login(model);
 
+        /*
         Response.Cookies.Append("token", response.Token, new CookieOptions
         {
             HttpOnly = true
         });
+        */
 
         if (response == null) return BadRequest(new { message = "Username or password is incorrect" });
 
         return Ok(response);
     }
 
+    /*
     [HttpPost("logout")]
     public async Task<IActionResult> Logout()
     {
@@ -40,6 +43,7 @@ public class AuthenticationController : ControllerBase
         //var response = await _authenticationService.Logout();
         return Ok(new { message = "Logout success" });
     }
+    */
 }
 
 
