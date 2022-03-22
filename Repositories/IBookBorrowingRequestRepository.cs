@@ -7,7 +7,7 @@ namespace mid_assignment_backend.Repositories
         Task<BookBorrowingRequest> GetBookBorrowingRequestById(int id);
         Task<List<BookBorrowingRequest>> GetAllBookBorrowingRequests();
         Task<BookBorrowingRequest> UpdateBookBorrowingRequest(BookBorrowingRequest bookBorrowingRequest);
-        Task<BookBorrowingRequest> CreateBookBorrowingRequest(BookBorrowingRequest bookBorrowingRequest);
+        Task<BookBorrowingRequest> CreateBookBorrowingRequest(BookBorrowingRequest bookBorrowingRequest, List<BookBorrowingRequestDetails> bookBorrowingRequestDetails);
         Task<BookBorrowingRequest> DeleteBookBorrowingRequest(int id);
     }
 }

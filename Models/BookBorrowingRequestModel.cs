@@ -11,5 +11,6 @@ namespace mid_assignment_backend.Models
         public DateTime Date { get; set; }
         public RequestStatus Status { get; set; }
         public int ProcessedByUserId { get; set; }
+        public List<BookBorrowingRequestDetailsModel> listDetails { get; set; }
     }
 }

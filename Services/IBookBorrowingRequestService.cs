@@ -6,7 +6,7 @@ namespace mid_assignment_backend.Services
     {
         Task<BookBorrowingRequest> GetBookBorrowingRequestById(int id);
         Task<List<BookBorrowingRequest>> GetAllBookBorrowingRequests();
-        Task<BookBorrowingRequest> CreateBookBorrowingRequest(BookBorrowingRequest bookBorrowingRequest);
+        Task<BookBorrowingRequest> CreateBookBorrowingRequest(BookBorrowingRequest bookBorrowingRequest, List<BookBorrowingRequestDetails> bookBorrowingRequestDetails);
         Task<BookBorrowingRequest> UpdateBookBorrowingRequest(BookBorrowingRequest bookBorrowingRequest);
         Task<BookBorrowingRequest> DeleteBookBorrowingRequest(int id);
     }

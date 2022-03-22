@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace mid_assignment_backend.Entities
 {
@@ -13,9 +14,9 @@ namespace mid_assignment_backend.Entities
         [Required, DefaultValue(RequestStatus.Waiting)]
         public RequestStatus Status { get; set; }
         [Required]
-        public int ProcessedByUserId { get; set; }
+        public int ProcessedByUserId { get; set; };
         public virtual User? ProcessedByUser { get; set; }
-
+        [JsonIgnore]
         public ICollection<BookBorrowingRequestDetails>? Details { get; set; }
     }
 }

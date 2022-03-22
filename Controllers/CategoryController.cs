@@ -18,8 +18,9 @@ public class CategoryController : ControllerBase
         _logger = logger;
         _categoryService = categoryService;
     }
-    
-    [HttpGet, Authorize(Roles = "Admin,User")]
+
+    [Authorize(Roles = "Admin,User")]
+    [HttpGet]
     public async Task<IActionResult> GetAllCategories()
     {
         var data = await _categoryService.GetAllCategories();
@@ -32,7 +33,8 @@ public class CategoryController : ControllerBase
         return new JsonResult(resultProduct);
     }
 
-    [HttpGet("{id}"), Authorize(Roles = "Admin,User")]
+    [Authorize(Roles = "Admin,User")]
+    [HttpGet("{id}")]
     public async Task<IActionResult> GetCategoryById(int id)
     {
         var data = await _categoryService.GetCategoryById(id);
@@ -44,7 +46,8 @@ public class CategoryController : ControllerBase
         return new JsonResult(resultProduct);
     }
 
-    [HttpPost, Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
+    [HttpPost]
     public async Task<IActionResult> CreateCategory([FromBody] CategoryModel category)
     {
         var resultProduct = new Category
@@ -56,7 +59,8 @@ public class CategoryController : ControllerBase
         return new JsonResult(data);
     }
 
-    [HttpPut("{id}"), Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
+    [HttpPut("{id}")]
     public async Task<IActionResult> UpdateCategory(int id, [FromBody] CategoryModel category)
     {
         var resultProduct = new Category
@@ -68,7 +72,8 @@ public class CategoryController : ControllerBase
         return new JsonResult(data);
     }
 
-    [HttpDelete("{id}"), Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteCategory(int id)
     {
         var data = await _categoryService.DeleteCategory(id);

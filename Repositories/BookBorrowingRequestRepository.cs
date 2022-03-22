@@ -30,33 +30,36 @@ namespace mid_assignment_backend.Repositories
         // }
 
         //create bookborrowing request with condition: maximum 3 requests per moth for 1 user
-        public async Task<BookBorrowingRequest> CreateBookBorrowingRequest(BookBorrowingRequest bookBorrowingRequest)
+        public async Task<BookBorrowingRequest> CreateBookBorrowingRequest(BookBorrowingRequest bookBorrowingRequest, List<BookBorrowingRequestDetails> bookBorrowingRequestDetails)
         {
             if (bookBorrowingRequest == null) throw new ArgumentNullException(nameof(bookBorrowingRequest));
-            var listRequestByUser = await _context.BookBorrowingRequests.Where(x => x.RequestByUserId == bookBorrowingRequest.RequestByUserId).ToListAsync();
-            var sortedListRequest = listRequestByUser.OrderByDescending(x => x.Date).ToList();
-            if (sortedListRequest.Count >= 3)
+            var listRequestByUser = await _context.BookBorrowingRequests.Where(x => (x.RequestByUserId == bookBorrowingRequest.RequestByUserId) && (x.Date.Month.Equals(bookBorrowingRequest.Date.Month))).ToListAsync();
+            if (listRequestByUser.Count >= 3)
             {
-                var interval = (DateTime.Now - sortedListRequest[1].Date).Days;
-                if (interval > 30)
-                {
-                    await _context.BookBorrowingRequests.AddAsync(bookBorrowingRequest);
-                    await _context.SaveChangesAsync();
-                    return bookBorrowingRequest;
-                }
-                else
+                return null;
+            }
+            else
+            {
+                if (bookBorrowingRequestDetails.Count() >= 5)
                 {
                     return null;
                 }
-            }
-            if(sortedListRequest.Count < 3)
-            {
-                await _context.BookBorrowingRequests.AddAsync(bookBorrowingRequest);
-                await _context.SaveChangesAsync();
-                return bookBorrowingRequest;
-            }
-            return null;
+                else
+                {
+                    await _context.BookBorrowingRequests.AddAsync(bookBorrowingRequest);
+                    await _context.SaveChangesAsync();
+                    foreach (var item in bookBorrowingRequestDetails)
+                    {
+                        await _context.BookBorrowingRequestDetailsList.AddAsync(new BookBorrowingRequestDetails{
+                            BookBorrowingRequestId = bookBorrowingRequest.Id,
+                            BookId = item.BookId
+                        });
+                        await _context.SaveChangesAsync();
+                    }
 
+                    return bookBorrowingRequest;
+                }
+            }
         }
 
         public async Task<BookBorrowingRequest> UpdateBookBorrowingRequest(BookBorrowingRequest bookBorrowingRequest)

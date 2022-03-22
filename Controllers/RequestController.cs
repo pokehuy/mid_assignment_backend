@@ -18,8 +18,9 @@ public class RequestController : ControllerBase
         _logger = logger;
         _bookBorrowingRequestService = bookBorrowingRequestService;
     }
-    
-    [HttpGet, Authorize(Roles = "Admin")]
+
+    [Authorize(Roles = "Admin")]
+    [HttpGet]
     public async Task<IActionResult> GetAllBookBorrowingRequests()
     {
         var data = await _bookBorrowingRequestService.GetAllBookBorrowingRequests();
@@ -34,8 +35,8 @@ public class RequestController : ControllerBase
                             };
         return new JsonResult(resultProduct);
     }
-
-    [HttpGet("{id}"), Authorize(Roles = "Admin,User")]
+    [Authorize(Roles = "Admin,User")]
+    [HttpGet("{id}")]
     public async Task<IActionResult> GetBookBorrowingRequest(int id)
     {
         var data = await _bookBorrowingRequestService.GetBookBorrowingRequestById(id);
@@ -50,7 +51,8 @@ public class RequestController : ControllerBase
         return new JsonResult(resultProduct);
     }
 
-    [HttpPost, Authorize(Roles = "Admin,User")]
+    [Authorize(Roles = "Admin,User")]
+    [HttpPost]
     public async Task<IActionResult> CreateBookBorrowingRequest(BookBorrowingRequestModel bookBorrowingRequestModel)
     {
         var data = new BookBorrowingRequest
@@ -60,11 +62,21 @@ public class RequestController : ControllerBase
             Status = bookBorrowingRequestModel.Status,
             ProcessedByUserId = bookBorrowingRequestModel.ProcessedByUserId,
         };
-        var resultProduct = await _bookBorrowingRequestService.CreateBookBorrowingRequest(data);
+        var listData = new List<BookBorrowingRequestDetails>();
+        foreach(var detail in bookBorrowingRequestModel.listDetails){
+            var detailsdata = new BookBorrowingRequestDetails
+            {
+                BookBorrowingRequestId = detail.BookBorrowingRequestId,
+                BookId = detail.BookId,
+            };
+            listData.Add(detailsdata);
+        }
+        var resultProduct = await _bookBorrowingRequestService.CreateBookBorrowingRequest(data, listData);
         return new JsonResult(resultProduct);
     }
 
-    [HttpPut("{id}"), Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
+    [HttpPut("{id}")]
     public async Task<IActionResult> UpdateBookBorrowingRequest(int id, BookBorrowingRequestModel bookBorrowingRequest)
     {
         var resultProduct = new BookBorrowingRequest

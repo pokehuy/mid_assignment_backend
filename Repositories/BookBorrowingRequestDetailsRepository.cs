@@ -30,6 +30,7 @@ namespace mid_assignment_backend.Repositories
         // }
 
         // create bookborrowing request details with condition: maximum 5 books per borrowing
+        /*
         public async Task<BookBorrowingRequestDetails> CreateBookBorrowingRequestDetails(BookBorrowingRequestDetails bookBorrowingRequestDetails)
         {
             if (bookBorrowingRequestDetails == null) throw new ArgumentNullException(nameof(bookBorrowingRequestDetails));
@@ -45,6 +46,7 @@ namespace mid_assignment_backend.Repositories
                 return null;
             }
         }
+        */
 
         public async Task<BookBorrowingRequestDetails> UpdateBookBorrowingRequestDetails(BookBorrowingRequestDetails bookBorrowingRequestDetails)
         {

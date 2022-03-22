@@ -22,10 +22,10 @@ namespace mid_assignment_backend.Services
             return await _bookBorrowingRequestRepository.GetBookBorrowingRequestById(id);
         }
 
-        public async Task<BookBorrowingRequest> CreateBookBorrowingRequest(BookBorrowingRequest bookBorrowingRequest)
+        public async Task<BookBorrowingRequest> CreateBookBorrowingRequest(BookBorrowingRequest bookBorrowingRequest, List<BookBorrowingRequestDetails> bookBorrowingRequestDetails)
         {
-            if(bookBorrowingRequest == null) return null;
-            return await _bookBorrowingRequestRepository.CreateBookBorrowingRequest(bookBorrowingRequest);
+            if(bookBorrowingRequest == null && bookBorrowingRequestDetails == null) return null;
+            return await _bookBorrowingRequestRepository.CreateBookBorrowingRequest(bookBorrowingRequest, bookBorrowingRequestDetails);
         }
 
         public async Task<BookBorrowingRequest> UpdateBookBorrowingRequest(BookBorrowingRequest bookBorrowingRequest)

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using mid_assignment_backend.Models;
 using mid_assignment_backend.Services;
 using mid_assignment_backend.Entities;
+using Microsoft.AspNetCore.Cors;
 
 namespace mid_assignment_backend.Controllers;
 
@@ -18,8 +19,10 @@ public class BookController : ControllerBase
         _logger = logger;
         _bookService = bookService;
     }
-    
-    [HttpGet, Authorize(Roles = "Admin,User")]
+
+    [EnableCors("AllowAll")]
+    [Authorize(Roles = "Admin,User")]
+    [HttpGet]
     public async Task<IActionResult> GetAllBooks()
     {
         var data = await _bookService.GetAllBooks();
@@ -34,7 +37,9 @@ public class BookController : ControllerBase
         return new JsonResult(resultProduct);
     }
 
-    [HttpGet("{id}"), Authorize(Roles = "Admin,User")]
+    [EnableCors("AllowAll")]
+    [Authorize(Roles = "Admin,User")]
+    [HttpGet("{id}")]
     public async Task<IActionResult> GetBookById(int id)
     {
         var data = await _bookService.GetBookById(id);
@@ -48,7 +53,9 @@ public class BookController : ControllerBase
         return new JsonResult(resultProduct);
     }
 
-    [HttpPost, Authorize(Roles = "Admin")]
+    [EnableCors("AllowAll")]
+    [Authorize(Roles = "Admin")]
+    [HttpPost]
     public async Task<IActionResult> CreateBook([FromBody] BookModel book)
     {
         var data = new Book
@@ -62,7 +69,9 @@ public class BookController : ControllerBase
         return new JsonResult(resultProduct);
     }
 
-    [HttpPut("{id}"), Authorize(Roles = "Admin")]
+    [EnableCors("AllowAll")]
+    [Authorize(Roles = "Admin")]
+    [HttpPut("{id}")]
     public async Task<IActionResult> UpdateBook(int id, [FromBody] BookModel book)
     {
         var data = new Book
@@ -76,7 +85,9 @@ public class BookController : ControllerBase
         return new JsonResult(resultProduct);
     }
 
-    [HttpDelete("{id}"), Authorize(Roles = "Admin")]
+    [EnableCors("AllowAll")]
+    [Authorize(Roles = "Admin")]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteBook(int id)
     {
         var data = await _bookService.DeleteBook(id);

@@ -7,6 +7,9 @@ using mid_assignment_backend.Common;
 using mid_assignment_backend.Repositories;
 using mid_assignment_backend.Services;
 
+//var MyAllowSpecificOrigins = "_myAllowSpecificOrigins"; // name of the cors policy
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -29,8 +32,20 @@ builder.Services.AddCors(options =>
         });
 });
 
-//builder.Services.AddCors();
 
+//builder.Services.AddCors();
+/*
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(MyAllowSpecificOrigins,
+                          builder =>
+                          {
+                              builder.WithOrigins("https://localhost:3000")
+                                                  .AllowAnyHeader()
+                                                  .AllowAnyMethod();
+                          });
+});
+*/
 builder.Services.AddTransient<IAuthenticationRepository, AuthenticationRepository>();
 builder.Services.AddTransient<IBookRepository, BookRepository>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
@@ -58,7 +73,7 @@ builder.Services.AddAuthentication(opt => {
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
         ValidIssuer = "",
-        ValidAudience = "http://localhost:5000",
+        ValidAudience = "http://localhost:5ß000",
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Constants.SIGNATURE_KEY))
     };
 });
@@ -115,6 +130,7 @@ app.UseAuthorization();
 
 app.UseCors("AllowAll"); // use CORS
 //app.UseCors(options => options.AllowCredentials().AllowAnyMethod().AllowAnyHeader());
+//app.UseCors(MyAllowSpecificOrigins);
 
 app.MapControllers();
 

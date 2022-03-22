@@ -43,7 +43,7 @@ public class DetailsController : ControllerBase
         };
         return new JsonResult(resultProduct);
     }
-
+    /*
     [HttpPost, Authorize(Roles = "Admin,User")]
     public async Task<IActionResult> CreateBookBorrowingRequestDetails(BookBorrowingRequestDetailsModel bookBorrowingRequestDetails)
     {
@@ -55,5 +55,5 @@ public class DetailsController : ControllerBase
         var resultProduct = await _bookBorrowingRequestDetailsService.CreateBookBorrowingRequestDetails(data);
         return new JsonResult(resultProduct);
     }
-    
+    */
 }
