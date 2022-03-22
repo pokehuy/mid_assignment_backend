@@ -14,7 +14,7 @@ namespace mid_assignment_backend.Entities
         [Required, DefaultValue(RequestStatus.Waiting)]
         public RequestStatus Status { get; set; }
         [Required]
-        public int ProcessedByUserId { get; set; };
+        public int ProcessedByUserId { get; set; }
         public virtual User? ProcessedByUser { get; set; }
         [JsonIgnore]
         public ICollection<BookBorrowingRequestDetails>? Details { get; set; }
